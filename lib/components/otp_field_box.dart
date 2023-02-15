@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../common/utils/global_variable.dart';
+import '../utils/global_variable.dart';
 import '../controller/authController.dart';
 
 class OtpFieldBox extends StatefulWidget {

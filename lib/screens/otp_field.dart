@@ -5,7 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
-import '../common/utils/global_variable.dart';
+import '../utils/global_variable.dart';
 import '../components/otp_field_box.dart';
 import '../controller/authController.dart';
 

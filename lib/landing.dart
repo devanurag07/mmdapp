@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:mmdapp/screens/appoinmentsScreen.dart';
@@ -39,36 +40,87 @@ class _LandingScreenState extends State<LandingScreen> {
       bottomNavigationBar: BottomAppBar(
         color: Color.fromARGB(255, 221, 221, 221),
         shape: const CircularNotchedRectangle(),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: Image.asset("assets/home.png"),
-              onPressed: () {
-                Navigator.pushReplacementNamed(
-                    context, '/landing/${HomePage.routeName}');
-              },
-            ),
-            IconButton(
-                icon: Image.asset("assets/appointment.png"),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(
-                      context, '/landing/${AppoinmentsScreen.routeName}');
-                }),
-            IconButton(
-                icon: Image.asset("assets/prescription.png"),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(
-                      context, '/landing/${PrescriptionsScreen.routeName}');
-                }),
-            IconButton(
-                icon: Image.asset("assets/profile.png"),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(
-                      context, '/landing/${ProfileScreen.routeName}');
-                })
-          ],
+        child: Container(
+          height: 70,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: SvgPicture.asset(
+                      "assets/icons/home.svg",
+                    ),
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                          context, '/landing/${HomePage.routeName}');
+                    },
+                  ),
+                  Text(
+                    "Home",
+                    style: TextStyle(fontSize: 12.sp),
+                  )
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                      icon: SvgPicture.asset(
+                        "assets/icons/appointment.svg",
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, '/landing/${AppoinmentsScreen.routeName}');
+                      }),
+                  Text(
+                    "Appointment",
+                    style: TextStyle(fontSize: 12.sp),
+                  )
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                      icon: SvgPicture.asset(
+                        "assets/icons/prescription.svg",
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context,
+                            '/landing/${PrescriptionsScreen.routeName}');
+                      }),
+                  Text(
+                    "Prescriptions",
+                    style: TextStyle(fontSize: 12.sp),
+                  )
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                      icon: SvgPicture.asset(
+                        "assets/icons/profile.svg",
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, '/landing/${ProfileScreen.routeName}');
+                      }),
+                  Text(
+                    "Profile",
+                    style: TextStyle(fontSize: 12.sp),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

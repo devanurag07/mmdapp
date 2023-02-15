@@ -1,10 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:mmdapp/components/category_component.dart';
 import 'package:mmdapp/controller/homeController.dart';
+import 'package:mmdapp/screens/doctor_profile.dart';
+import 'package:mmdapp/screens/view_all_doctor.dart';
 
 import '../components/doctor_component.dart';
+import '../utils/global_variable.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = 'home';
@@ -16,16 +22,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final doctorController = Get.put((DoctorController()));
+  final categoryController = Get.put((CategoryController()));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // first element
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -33,67 +40,137 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     const Text(
                       "Aditya Paswan ,",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textColor),
                     ),
-                    const SizedBox(
-                      width: 5,
+                    SizedBox(
+                      width: 5.w,
                     ),
                     const Text(
                       "Delhi",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textColor),
                     ),
-                    const SizedBox(
-                      width: 5,
+                    SizedBox(
+                      width: 5.w,
                     ),
                     Image.asset("assets/dropdown_blue.png")
                   ],
                 ),
-                Image.asset("assets/notification.png")
+                SvgPicture.asset("assets/icons/notification.svg")
               ],
             ),
             // search
-            const SizedBox(height: 20),
-            const CupertinoSearchTextField(),
+            SizedBox(height: 20.h),
+            CupertinoSearchTextField(),
 
             // Top Doctors
 
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
+            ),
+
+            Text("Categories"),
+            SizedBox(
+              height: 10.h,
+            ),
+            Expanded(
+              child: IntrinsicHeight(
+                child: FutureBuilder(
+                    future: categoryController.featchCategoryDetails('1'),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      return ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) => SizedBox(
+                          width: 25.w,
+                        ),
+                        itemCount: 3,
+                        itemBuilder: (context, index) => CategoryComponent(
+                          title: categoryController
+                              .categoryDetails.value!.title[index],
+                          url: categoryController
+                              .categoryDetails.value!.url[index],
+                          color: categoryController
+                              .categoryDetails.value!.color[index],
+                        ),
+                      );
+                    }),
+              ),
+            ),
+
+            SizedBox(
+              height: 10.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   "Top Doctors",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.lightTextColor),
                 ),
                 GestureDetector(
-                  onTap: () => print('clicked'),
-                  child: const Text(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ViewAllDoctor(),
+                        ));
+                  },
+                  child: Text(
                     "View All",
                     style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w500,
                         color: Colors.blue),
                   ),
                 )
               ],
             ),
+            SizedBox(
+              height: 10.h,
+            ),
 
-            FutureBuilder(
-                future: doctorController.featchDoctorDetails('1'),
-                builder:
-                    (BuildContext context, AsyncSnapshot<String> snapshot) {
-                  return DoctorComponent(
-                    name: doctorController.doctorDetails.value!.name,
-                    url: doctorController.doctorDetails.value!.url,
-                    ranking: doctorController.doctorDetails.value!.ranking,
-                    time: doctorController.doctorDetails.value!.time,
-                    Category: doctorController.doctorDetails.value!.category,
-                  );
-                }),
+            Expanded(
+              child: FutureBuilder(
+                  future: doctorController.featchDoctorDetails('1'),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    return ListView.separated(
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: 10.h,
+                      ),
+                      itemCount: 3,
+                      itemBuilder: (context, index) => GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DoctorProfile()));
+                        },
+                        child: DoctorComponent(
+                          name:
+                              doctorController.doctorDetails.value!.name[index],
+                          url: doctorController.doctorDetails.value!.url[index],
+                          ranking: doctorController
+                              .doctorDetails.value!.ranking[index],
+                          time:
+                              doctorController.doctorDetails.value!.time[index],
+                          Category: doctorController
+                              .doctorDetails.value!.category[index],
+                        ),
+                      ),
+                    );
+                  }),
+            ),
           ],
         ),
       )),

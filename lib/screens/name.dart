@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mmdapp/common/widget/custom_textfield.dart';
 
-import '../common/utils/global_variable.dart';
+import '../utils/global_variable.dart';
 import '../controller/authController.dart';
 
 class NamePage extends StatelessWidget {
@@ -18,7 +19,7 @@ class NamePage extends StatelessWidget {
       backgroundColor: Color.fromARGB(246, 240, 240, 240),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -26,11 +27,11 @@ class NamePage extends StatelessWidget {
                 "Your Name",
                 style: TextStyle(
                     color: AppColors.mainColor,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w600),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               CustomTextField(
                   controller: authController.nameController,

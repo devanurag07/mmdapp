@@ -1,5 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../utils/global_variable.dart';
 
 class DoctorComponent extends StatelessWidget {
   final url;
@@ -13,51 +17,70 @@ class DoctorComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 80,
+      width: double.infinity.w,
+      height: 75.h,
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
+          boxShadow: kElevationToShadow[2],
+          borderRadius: BorderRadius.all(Radius.circular(10.r))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(url),
-                const SizedBox(
-                  width: 20,
+                // SvgPicture.asset(url.toString()),
+                CircleAvatar(
+                  radius: 35,
+                  backgroundImage: AssetImage('assets/dummy_image.png'),
+                ),
+                SizedBox(
+                  width: 20.w,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                      name.toString(),
+                      style: TextStyle(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.lightTextColor),
+                    ),
+                    SizedBox(
+                      height: 5.h,
                     ),
                     Row(
                       children: [
                         Image.asset("assets/dentist.png"),
+                        SizedBox(
+                          width: 5.w,
+                        ),
                         Text(
-                          Category,
+                          Category.toString(),
                           style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.w500,
                               color: Colors.blue),
                         )
                       ],
                     ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
                     Row(
                       children: [
-                        Image.asset("assets/time.png"),
+                        SvgPicture.asset("assets/icons/clock.svg"),
+                        SizedBox(
+                          width: 5.w,
+                        ),
                         Text(
-                          time,
+                          time.toString(),
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w500),
+                              fontSize: 10.sp, fontWeight: FontWeight.w500),
                         )
                       ],
                     )
@@ -66,12 +89,15 @@ class DoctorComponent extends StatelessWidget {
               ],
             ),
           ),
-          Row(
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset("assets/star.png"),
-              Text(ranking.toString())
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset("assets/star.png"),
+                Text(ranking.toString())
+              ],
+            ),
           )
         ],
       ),
