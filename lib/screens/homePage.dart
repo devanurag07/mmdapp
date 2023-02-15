@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Row(
                   children: [
-                    Text(
+                    const Text(
                       "Aditya Paswan ,",
                       style:
                           TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       width: 5,
                     ),
-                    Text(
+                    const Text(
                       "Delhi",
                       style:
                           TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             ),
             // search
             const SizedBox(height: 20),
-            CupertinoSearchTextField(),
+            const CupertinoSearchTextField(),
 
             // Top Doctors
 
@@ -65,13 +65,13 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Top Doctors",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                 ),
                 GestureDetector(
                   onTap: () => print('clicked'),
-                  child: Text(
+                  child: const Text(
                     "View All",
                     style: TextStyle(
                         fontSize: 15,
