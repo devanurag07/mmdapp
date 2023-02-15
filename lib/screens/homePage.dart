@@ -42,7 +42,9 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       "Aditya Paswan ,",
                       style: TextStyle(
-                          fontSize: 17.sp, fontWeight: FontWeight.w600,color: AppColors.textColor),
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textColor),
                     ),
                     SizedBox(
                       width: 5.w,
@@ -50,7 +52,8 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       "Delhi",
                       style: TextStyle(
-                          fontSize: 17.sp, fontWeight: FontWeight.w600,
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.w600,
                           color: AppColors.textColor),
                     ),
                     SizedBox(
@@ -76,30 +79,32 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 30.h,
             ),
-            SizedBox(
-              height: 120,
-              child: Expanded(
-                child: FutureBuilder(
-                    future: categoryController.featchCategoryDetails('1'),
-                    builder:
-                        (BuildContext context, AsyncSnapshot<String> snapshot) {
-                      return ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) => SizedBox(
-                          width: 15.w,
-                        ),
-                        itemCount: 3,
-                        itemBuilder: (context, index) => CategoryComponent(
-                          title: categoryController
-                              .categoryDetails.value!.title[index],
-                          url: categoryController
-                              .categoryDetails.value!.url[index],
-                          color: categoryController
-                              .categoryDetails.value!.color[index],
-                        ),
-                      );
-                    }),
+            Expanded(
+              child: IntrinsicHeight(
+                child: SizedBox(
+                  height: 120,
+                  child: FutureBuilder(
+                      future: categoryController.featchCategoryDetails('1'),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<String> snapshot) {
+                        return ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) => SizedBox(
+                            width: 15.w,
+                          ),
+                          itemCount: 3,
+                          itemBuilder: (context, index) => CategoryComponent(
+                            title: categoryController
+                                .categoryDetails.value!.title[index],
+                            url: categoryController
+                                .categoryDetails.value!.url[index],
+                            color: categoryController
+                                .categoryDetails.value!.color[index],
+                          ),
+                        );
+                      }),
+                ),
               ),
             ),
 
@@ -111,8 +116,10 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(
                   "Top Doctors",
-                  style:
-                      TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500,color: AppColors.lightTextColor),
+                  style: TextStyle(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.lightTextColor),
                 ),
                 GestureDetector(
                   onTap: () {
