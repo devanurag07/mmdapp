@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/global_variable.dart';
+
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -15,7 +17,7 @@ class CustomButton extends StatelessWidget {
     required this.text,
     this.width = 0,
     this.height = 0,
-    this.color = Colors.blue,
+    this.color = AppColors.mainColorbutton,
     this.textcolor = Colors.white,
     this.elevation = 1,
   }) : super(key: key);
@@ -34,9 +36,7 @@ class CustomButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: textcolor,
-            fontSize: 16,
-          ),
+              color: textcolor, fontSize: 16, fontWeight: FontWeight.w400),
         ));
   }
 }
