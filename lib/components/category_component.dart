@@ -20,7 +20,7 @@ class CategoryComponent extends StatelessWidget {
           children: [
             Positioned(
               child: Container(
-                // height: 120,
+                height: 120,
                 width: 120,
                 decoration: const BoxDecoration(
                   color: Colors.white,

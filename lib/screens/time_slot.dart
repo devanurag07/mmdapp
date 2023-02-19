@@ -153,7 +153,7 @@ class _TimeSlotState extends State<TimeSlot> {
               },
             ),
             SizedBox(
-              height: 170,
+              height: 150,
             ),
             CustomButton(
                 onPressed: () {
